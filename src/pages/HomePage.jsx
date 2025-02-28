@@ -1,17 +1,10 @@
 import { useState } from "react";
-import "../assets/pages/HomePage.scss";
-import {
-  FaMagnifyingGlass,
-  FaBell,
-  FaRegBookmark,
-  FaFacebookF,
-  FaLinkedin,
-  FaTwitter,
-  FaInstagram,
-} from "react-icons/fa6";
+import "/public/assets/pages/HomePage.scss";
+import { FaRegBookmark } from "react-icons/fa6";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 
 export default function HomePage() {
-  const [searchInput, setSearchInput] = useState("");
   const [formData, setFormData] = useState({
     status: "",
     location: [],
@@ -123,33 +116,7 @@ export default function HomePage() {
 
   return (
     <div className="main-container">
-      <header>
-        <div className="logo-container">
-          <div>LOGO</div>
-          <div className="search-bar">
-            <input
-              type="text"
-              placeholder="Search Property"
-              className="search-input"
-              value={searchInput}
-              onChange={(e) => setSearchInput(e.target.value)}
-            />
-            <hr />
-            <FaMagnifyingGlass />
-          </div>
-        </div>
-        <div className="profile-container">
-          <ul>
-            <li>
-              <a href="#">Profile</a>
-            </li>
-            <li>
-              <FaBell />
-            </li>
-            <li className="profile-picture"></li>
-          </ul>
-        </div>
-      </header>
+      <Header />
       <main>
         <form onSubmit={handleSubmit}>
           <div className="filter-container">
@@ -159,7 +126,7 @@ export default function HomePage() {
             <div className="status-container">
               <h4>Status</h4>
               <ul>
-                <li>
+                <li key="new">
                   <input
                     type="radio"
                     id="new"
@@ -170,7 +137,7 @@ export default function HomePage() {
                   />
                   <label htmlFor="new">New</label>
                 </li>
-                <li>
+                <li key="second">
                   <input
                     type="radio"
                     id="second"
@@ -219,23 +186,6 @@ export default function HomePage() {
                     </label>
                   </li>
                 ))}
-
-                <li>
-                  <input type="checkbox" id="rumah" />
-                  <label htmlFor="rumah">Rumah</label>
-                </li>
-                <li>
-                  <input type="checkbox" id="apartemen" />
-                  <label htmlFor="apartemen">Apartemen</label>
-                </li>
-                <li>
-                  <input type="checkbox" id="ruko" />
-                  <label htmlFor="ruko">Ruko</label>
-                </li>
-                <li>
-                  <input type="checkbox" id="hotel" />
-                  <label htmlFor="hotel">Hotel</label>
-                </li>
               </ul>
             </div>
 
@@ -287,7 +237,7 @@ export default function HomePage() {
           </div>
           <div className="card-container">
             {dummy.map((item) => (
-              <div className="card-item">
+              <div className="card-item" key={item}>
                 <div className="card-profile">
                   <img className="card-image" src={item.image_url} />
                   <div className="card-title">
@@ -318,72 +268,7 @@ export default function HomePage() {
           </div>
         </div>
       </main>
-      <footer>
-        <div className="footer-details">
-          <div className="company-details">
-            <h1>LOGO</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In non
-              lectus eget massa dictum ornare in sed libero. Sed id varius quam.
-              Cras iaculis ac massa et vulputate. Ut varius.
-            </p>
-          </div>
-          <div className="menu-details">
-            <div className="menu-details-property">
-              <ul>
-                <li>
-                  <a href="#">Property Category</a>
-                </li>
-                <li>
-                  <a href="#">Testimony</a>
-                </li>
-                <li>
-                  <a href="#">Download App</a>
-                </li>
-              </ul>
-            </div>
-            <div className="menu-details-about">
-              <ul>
-                <li>
-                  <a href="#">About Us</a>
-                </li>
-                <li>
-                  <a href="#">News and Events</a>
-                </li>
-                <li>
-                  <a href="#">Careers</a>
-                </li>
-              </ul>
-            </div>
-            <div className="menu-details-contacts">
-              <ul>
-                <li>
-                  <a href="#">Contact Us</a>
-                </li>
-                <li>
-                  <a href="#">FAQ</a>
-                </li>
-                <li>
-                  <a href="#">Send Feedback</a>
-                </li>
-                <li>
-                  <div className="socials">
-                    <p>Socials</p>
-                    <div className="socials-icons">
-                      <FaFacebookF />
-                      <FaLinkedin />
-                      <FaTwitter />
-                      <FaInstagram />
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div className="footer-icons"></div>
-        &copy LOGO 2022
-      </footer>
+      <Footer />
     </div>
   );
 }
