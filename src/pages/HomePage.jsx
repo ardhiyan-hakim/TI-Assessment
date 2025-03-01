@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "/public/assets/pages/HomePage.scss";
-import { FaRegBookmark } from "react-icons/fa6";
+import { FaRegBookmark, FaRegClock } from "react-icons/fa6";
+import { PiSuitcaseSimpleLight } from "react-icons/pi";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
@@ -17,23 +18,40 @@ export default function HomePage() {
   const city = ["bekasi", "jakarta", "bandung", "bogor"];
   const type = ["rumah", "apartemen", "ruko", "hotel"];
   const dummy = [
-    {
-      type: "rumah",
-      status: "second",
-      name: "Rumah Minimalis Dekat dengan Tol Bekasi Timur",
-      description:
-        "Disewakan Rumah Minimalis Dekat dengan Tol Bekasi Timur, 3 Kamar Tidur, 1 Kamar Mandi, Luas Tanah 6x12, Ruang Tamu, Ruang Makan, Dapur, Garasi.",
-      address: "Perum Nusa INdah Jl. Mawar 189 RT 02/07, Tambun Utara",
-      price: "15000000.00",
-      building_area: 60,
-      land_area: 72,
-      image: "image/p21zRkrMIbBu718udeAjUMO84L0cVLhiFrlYZQp0.jpg",
-      updated_at: "2025-02-28T08:42:45.000000Z",
-      created_at: "2025-02-28T08:42:45.000000Z",
-      id: 3,
-      image_url:
-        "https://testcandidate.linkedinindonesia.com/storage/image/p21zRkrMIbBu718udeAjUMO84L0cVLhiFrlYZQp0.jpg",
-    },
+    // {
+    //   type: "rumah",
+    //   status: "second",
+    //   name: "Rumah Minimalis Dekat dengan Tol Bekasi Timur",
+    //   description:
+    //     "Disewakan Rumah Minimalis Dekat dengan Tol Bekasi Timur, 3 Kamar Tidur, 1 Kamar Mandi, Luas Tanah 6x12, Ruang Tamu, Ruang Makan, Dapur, Garasi.",
+    //   address: "Perum Nusa INdah Jl. Mawar 189 RT 02/07, Tambun Utara",
+    //   price: "15000000.00",
+    //   building_area: 60,
+    //   land_area: 72,
+    //   image: "image/p21zRkrMIbBu718udeAjUMO84L0cVLhiFrlYZQp0.jpg",
+    //   updated_at: "2025-02-28T08:42:45.000000Z",
+    //   created_at: "2025-02-28T08:42:45.000000Z",
+    //   id: 3,
+    //   image_url:
+    //     "https://testcandidate.linkedinindonesia.com/storage/image/p21zRkrMIbBu718udeAjUMO84L0cVLhiFrlYZQp0.jpg",
+    // },
+    // {
+    //   type: "rumah",
+    //   status: "second",
+    //   name: "Rumah Minimalis Dekat dengan Tol Bekasi Timur",
+    //   description:
+    //     "Disewakan Rumah Minimalis Dekat dengan Tol Bekasi Timur, 3 Kamar Tidur, 1 Kamar Mandi, Luas Tanah 6x12, Ruang Tamu, Ruang Makan, Dapur, Garasi.",
+    //   address: "Perum Nusa INdah Jl. Mawar 189 RT 02/07, Tambun Utara",
+    //   price: "15000000.00",
+    //   building_area: 60,
+    //   land_area: 72,
+    //   image: "image/p21zRkrMIbBu718udeAjUMO84L0cVLhiFrlYZQp0.jpg",
+    //   updated_at: "2025-02-28T08:42:45.000000Z",
+    //   created_at: "2025-02-28T08:42:45.000000Z",
+    //   id: 3,
+    //   image_url:
+    //     "https://testcandidate.linkedinindonesia.com/storage/image/p21zRkrMIbBu718udeAjUMO84L0cVLhiFrlYZQp0.jpg",
+    // },
   ];
 
   const handleStatusChange = (e) => {
@@ -117,11 +135,10 @@ export default function HomePage() {
   return (
     <div className="main-container">
       <Header />
-      <main>
+      <main className="homepage-container">
         <form onSubmit={handleSubmit}>
           <div className="filter-container">
             <h2>Filter By</h2>
-            <hr />
 
             <div className="status-container">
               <h4>Status</h4>
@@ -212,8 +229,10 @@ export default function HomePage() {
               </div>
             </div>
 
-            <button type="submit">Apply</button>
-            <button type="button" onClick={handleReset}>
+            <button type="submit" className="submit">
+              Apply
+            </button>
+            <button type="button" className="reset" onClick={handleReset}>
               Reset Filter
             </button>
           </div>
@@ -236,35 +255,47 @@ export default function HomePage() {
             </select>
           </div>
           <div className="card-container">
-            {dummy.map((item) => (
-              <div className="card-item" key={item}>
-                <div className="card-profile">
-                  <img className="card-image" src={item.image_url} />
-                  <div className="card-title">
-                    <h4>{item.name.slice(0, 20) + "..."}</h4>
-                    <p>Bekasi</p>
-                  </div>
-                  <div className="card-bookmark">
-                    <FaRegBookmark />
-                  </div>
-                </div>
-                <div className="card-tags">
-                  <p>{item.type}</p>
-                  <p>{item.status}</p>
-                  <p>IDR {item.price / 1000000}M</p>
-                </div>
-                <div className="card-specs">
-                  <p>
-                    LT {item.land_area} m<sup>2</sup>{" "}
-                  </p>
-                  <p>
-                    LB {item.building_area} m<sup>2</sup>{" "}
-                  </p>
-                  <p>{calculateTime(item.created_at)}</p>
-                </div>
-                <button>Book</button>
+            {dummy?.length === 0 ? (
+              <div className="not-found-container">
+                <PiSuitcaseSimpleLight size={50} />
+                <p>Sorry there's no result related to "(keyword)".</p>
+                <p>We'll keep updating and take notes of your interest.</p>
+                <button>See other properties</button>
               </div>
-            ))}
+            ) : (
+              dummy.map((item) => (
+                <div className="card-item" key={item}>
+                  <div className="card-profile">
+                    <img className="card-image" src={item.image_url} />
+                    <div className="card-title">
+                      <h4>{item.name.slice(0, 15) + "..."}</h4>
+                      <p>Bekasi</p>
+                    </div>
+                    <div className="card-bookmark">
+                      <FaRegBookmark />
+                    </div>
+                  </div>
+                  <div className="card-tags">
+                    <p>{item.type}</p>
+                    <p>{item.status}</p>
+                    <p>IDR {item.price / 1000000}M</p>
+                  </div>
+                  <div className="card-specs">
+                    <div className="building-specs">
+                      <p>
+                        LT {item.land_area} m<sup>2</sup>{" "}
+                      </p>
+                      <p>
+                        LB {item.building_area} m<sup>2</sup>{" "}
+                      </p>
+                    </div>
+                    <p>{calculateTime(item.created_at)}</p>
+                    <FaRegClock />
+                  </div>
+                  <button>Book</button>
+                </div>
+              ))
+            )}
           </div>
         </div>
       </main>

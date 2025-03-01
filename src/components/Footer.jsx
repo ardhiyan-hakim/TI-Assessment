@@ -1,3 +1,5 @@
+import "/public/assets/components/Footer.scss";
+
 import {
   FaFacebookF,
   FaLinkedin,
@@ -19,6 +21,7 @@ export default function Footer() {
         </div>
         <div className="menu-details">
           <div className="menu-details-property">
+            <h3>Property</h3>
             <ul>
               <li>
                 <a href="#">Property Category</a>
@@ -32,6 +35,7 @@ export default function Footer() {
             </ul>
           </div>
           <div className="menu-details-about">
+            <h3>About</h3>
             <ul>
               <li>
                 <a href="#">About Us</a>
@@ -45,6 +49,7 @@ export default function Footer() {
             </ul>
           </div>
           <div className="menu-details-contacts">
+            <h3>Contact Us</h3>
             <ul>
               <li>
                 <a href="#">Contact Us</a>
@@ -59,10 +64,18 @@ export default function Footer() {
                 <div className="socials">
                   <p>Socials</p>
                   <div className="socials-icons">
-                    <FaFacebookF />
-                    <FaLinkedin />
-                    <FaTwitter />
-                    <FaInstagram />
+                    <div className="icon-container">
+                      <FaFacebookF />
+                    </div>
+                    <div className="icon-container">
+                      <FaLinkedin />
+                    </div>
+                    <div className="icon-container">
+                      <FaTwitter />
+                    </div>
+                    <div className="icon-container">
+                      <FaInstagram />
+                    </div>
                   </div>
                 </div>
               </li>
@@ -70,8 +83,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="footer-icons"></div>
-      &copy LOGO 2022
+      <p>&copy; LOGO 2022</p>
     </footer>
   );
 }

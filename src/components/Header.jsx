@@ -1,5 +1,9 @@
+import "/public/assets/components/Header.scss";
+
 import { useState } from "react";
 import { FaMagnifyingGlass, FaBell } from "react-icons/fa6";
+import { MdArrowDropDown } from "react-icons/md";
+import { IoMdMail } from "react-icons/io";
 
 export default function Header() {
   const [searchInput, setSearchInput] = useState("");
@@ -7,7 +11,7 @@ export default function Header() {
   return (
     <header>
       <div className="logo-container">
-        <div>LOGO</div>
+        <div><b>LOGO</b></div>
         <div className="search-bar">
           <input
             type="text"
@@ -16,19 +20,21 @@ export default function Header() {
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />
-          <hr />
           <FaMagnifyingGlass />
         </div>
       </div>
       <div className="profile-container">
         <ul>
           <li>
-            <a href="#">Profile</a>
+            <IoMdMail color="white" />
           </li>
           <li>
-            <FaBell />
+            <FaBell color="white" />
           </li>
-          <li className="profile-picture"></li>
+          <li className="profile-picture">
+            <img src="/public/assets/profile.webp" alt="profile" />
+            <MdArrowDropDown color="white" />
+          </li>
         </ul>
       </div>
     </header>

@@ -1,0 +1,155 @@
+main.homepage-container {
+  display: flex;
+  justify-content: center;
+  background-color: lightgray;
+  gap: 1rem;
+  padding: 1rem;
+
+  .filter-container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .status-container,
+    .location-container,
+    .type-container,
+    .price-container {
+      padding-top: 0.8rem;
+
+      ul li {
+        display: flex;
+        gap: 0.3rem;
+      }
+    }
+
+    button.submit {
+      margin-top: 0.5rem;
+      background-color: #e85582;
+      color: white;
+      border-radius: 0.25rem;
+      border: none;
+      outline: none;
+    }
+
+    button.reset {
+      margin-top: 0.25rem;
+      background-color: white;
+      color: black;
+      border-radius: 0.25rem;
+      border: 1px solid black;
+      outline: none;
+    }
+  }
+
+  .property-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 70%;
+
+    .sort-bar {
+      display: flex;
+      justify-content: end;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      background-color: white;
+    }
+
+    .card-container {
+      display: flex;
+      justify-content: start;
+      flex-wrap: wrap;
+      gap: 1rem;
+
+      .not-found-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        min-height: 480px;
+        background-color: white;
+        
+        button {
+          margin-top: 0.5rem;
+          background-color: #e85582;
+          color: white;
+          padding: 0.5rem 1rem;
+          border-radius: 0.25rem;
+          border: none;
+          outline: none;
+
+        }
+      }
+
+      .card-item {
+        display: flex;
+        flex-direction: column;
+        width: 32%;
+        gap: 0.5rem;
+        padding: 1rem;
+        background-color: white;
+        border-radius: 0.5rem;
+
+        .card-profile {
+          display: inline-flex;
+          gap: 0.5rem;
+
+          img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 2px;
+          }
+        }
+
+        .card-tags {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          gap: 0.4rem;
+
+          p {
+            display: flex;
+            justify-content: center;
+            padding: 2px 6px;
+            background-color: rgb(222, 235, 240);
+            color: rgb(51, 154, 189);
+            border-radius: 0.25rem;
+          }
+        }
+
+        .card-specs {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: end;
+          gap: 0.5rem;
+
+          .building-specs {
+            display: flex;
+            justify-content: center;
+            padding: 2px 6px;
+            background-color: beige;
+          }
+        }
+
+        button {
+          margin-top: 0.5rem;
+          background-color: #e85582;
+          color: white;
+          border-radius: 0.25rem;
+          border: none;
+          outline: none;
+        }
+      }
+    }
+  }
+}

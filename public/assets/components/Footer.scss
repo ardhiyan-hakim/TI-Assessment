@@ -1,0 +1,57 @@
+footer {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 3rem;
+  background-color: white;
+
+  .footer-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .company-details {
+      width: 30%;
+    }
+
+    .menu-details {
+      display: flex;
+      justify-content: end;
+      width: 70%;
+      gap: 2.5rem;
+
+      * > ul {
+        padding-inline-start: 0;
+
+        li {
+          list-style-type: none;
+
+          a {
+            color: grey;
+            text-decoration: none;
+          }
+
+          .socials {
+            p {
+              color: grey;
+            }
+
+            .socials-icons {
+              margin-top: 1rem;
+              display: inline-flex;
+              flex-direction: row;
+              gap: 0.4rem;
+
+              .icon-container {
+                padding: 0.3rem;
+                color: white;
+                background-color: black;
+                border-radius: 100%;
+                }
+
+            }
+          }
+        }
+      }
+    }
+  }
+}
