@@ -2,6 +2,17 @@
 
 Welcome to the **TalentInsider Assessment** repository. This guide will help you set up and run the assessment project smoothly.
 
+## **Fulfillment Grade**
+1. Login fulfilled (Token can't pass into Redux)
+2. Register fulfilled
+3. Infinite Scroll not fulfilled
+4. Design Pages : Hardly similar
+5. API Documentation Understanding : Good
+6. API Implementation : Bad
+7. Redux : A lot of redundancy
+8. Slicing Components : Good
+
+
 ## 🚀 **How to Setup the Assessment Project**
 
 Follow these steps to get started:
