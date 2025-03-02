@@ -1,11 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import "/public/assets/pages/HomePage.scss";
 import { FaRegBookmark, FaRegClock } from "react-icons/fa6";
 import { PiSuitcaseSimpleLight } from "react-icons/pi";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
+import {
+  fetchDataStart,
+  fetchDataSuccess,
+  fetchDataFailure,
+} from "../actions/dataActions";
+
 export default function HomePage() {
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     status: "",
     location: [],
@@ -13,46 +22,42 @@ export default function HomePage() {
     minPrice: "",
     maxPrice: "",
   });
+
   const [sortOption, setSortOption] = useState("relevance");
+  const { items } = useSelector((state) => state.data);
+
+  const fetchData = async () => {
+    dispatch(fetchDataStart());
+
+    try {
+      const response = await fetch(
+        "https://testcandidate.linkedinindonesia.com/api/properties",
+        {
+          method: "GET",
+          headers: {
+            Authorization: "TOKEN_KEY", // required
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+
+      const data = await response.json();
+      console.log(data);
+      dispatch(fetchDataSuccess(data));
+    } catch (err) {
+      dispatch(fetchDataFailure(err.message));
+    }
+  };
 
   const city = ["bekasi", "jakarta", "bandung", "bogor"];
   const type = ["rumah", "apartemen", "ruko", "hotel"];
-  const dummy = [
-    // {
-    //   type: "rumah",
-    //   status: "second",
-    //   name: "Rumah Minimalis Dekat dengan Tol Bekasi Timur",
-    //   description:
-    //     "Disewakan Rumah Minimalis Dekat dengan Tol Bekasi Timur, 3 Kamar Tidur, 1 Kamar Mandi, Luas Tanah 6x12, Ruang Tamu, Ruang Makan, Dapur, Garasi.",
-    //   address: "Perum Nusa INdah Jl. Mawar 189 RT 02/07, Tambun Utara",
-    //   price: "15000000.00",
-    //   building_area: 60,
-    //   land_area: 72,
-    //   image: "image/p21zRkrMIbBu718udeAjUMO84L0cVLhiFrlYZQp0.jpg",
-    //   updated_at: "2025-02-28T08:42:45.000000Z",
-    //   created_at: "2025-02-28T08:42:45.000000Z",
-    //   id: 3,
-    //   image_url:
-    //     "https://testcandidate.linkedinindonesia.com/storage/image/p21zRkrMIbBu718udeAjUMO84L0cVLhiFrlYZQp0.jpg",
-    // },
-    // {
-    //   type: "rumah",
-    //   status: "second",
-    //   name: "Rumah Minimalis Dekat dengan Tol Bekasi Timur",
-    //   description:
-    //     "Disewakan Rumah Minimalis Dekat dengan Tol Bekasi Timur, 3 Kamar Tidur, 1 Kamar Mandi, Luas Tanah 6x12, Ruang Tamu, Ruang Makan, Dapur, Garasi.",
-    //   address: "Perum Nusa INdah Jl. Mawar 189 RT 02/07, Tambun Utara",
-    //   price: "15000000.00",
-    //   building_area: 60,
-    //   land_area: 72,
-    //   image: "image/p21zRkrMIbBu718udeAjUMO84L0cVLhiFrlYZQp0.jpg",
-    //   updated_at: "2025-02-28T08:42:45.000000Z",
-    //   created_at: "2025-02-28T08:42:45.000000Z",
-    //   id: 3,
-    //   image_url:
-    //     "https://testcandidate.linkedinindonesia.com/storage/image/p21zRkrMIbBu718udeAjUMO84L0cVLhiFrlYZQp0.jpg",
-    // },
-  ];
+
+  useEffect(() => {
+    fetchData();
+  }, [dispatch]);
 
   const handleStatusChange = (e) => {
     setFormData((prevData) => ({
@@ -255,7 +260,7 @@ export default function HomePage() {
             </select>
           </div>
           <div className="card-container">
-            {dummy?.length === 0 ? (
+            {items.length === 0 ? (
               <div className="not-found-container">
                 <PiSuitcaseSimpleLight size={50} />
                 <p>Sorry there's no result related to "(keyword)".</p>
@@ -263,7 +268,7 @@ export default function HomePage() {
                 <button>See other properties</button>
               </div>
             ) : (
-              dummy.map((item) => (
+              items.map((item) => (
                 <div className="card-item" key={item}>
                   <div className="card-profile">
                     <img className="card-image" src={item.image_url} />

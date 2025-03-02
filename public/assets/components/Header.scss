@@ -15,6 +15,11 @@ header {
     padding: 12px 12px 12px 32px;
     color: white;
 
+    a {
+      color: white;
+      text-decoration: none;
+    }
+
     .search-bar {
       display: flex;
       flex-direction: row;

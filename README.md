@@ -17,7 +17,7 @@ cd talentinsider-assessment
 npm install  # or yarn install
 ```
 
-### 3️⃣ Configure Environment Variables
+### 3️⃣ Configure Environment Variables (No .env currently)
 Create a `.env` file in the root directory and add the necessary environment variables:
 ```env
 PORT=

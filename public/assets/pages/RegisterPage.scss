@@ -1,0 +1,50 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: beige;
+
+  .signup-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5% 5%;
+    width: 80vh;
+    background-color: white;
+    border-radius: 0.25rem;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form-grid {
+      display: flex;
+      flex-direction: row;
+      gap: 5%;
+      padding: 5%;
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+
+        input {
+          padding: 0.25rem 0.5rem;
+        }
+      }
+    }
+
+    .login-text {
+      margin-top: 0.8rem;
+      font-size: 0.75rem;
+    }
+
+    .divider {
+      margin: 1rem 0;
+    }
+  }
+}
